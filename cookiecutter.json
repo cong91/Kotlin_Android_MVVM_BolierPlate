@@ -1,0 +1,16 @@
+{
+  "project_name": "SampleBolierPlate",
+  "repo_name": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+  "min_sdk": 16,
+  "target_sdk": 27,
+  "package_name": "congnt.bolierplate.app.{{ cookiecutter.project_name|lower|replace(' ', '')|replace('-', '') }}",
+  "description": "A short description of the project.",
+  "author": "CongNT",
+  "email": "thanhcong191@gmail.com",
+  "version": "1.0.0",
+  "splash_screen": "y/n",
+  "retrofit": "y/n",
+  "picasso": "y/n",
+  "anko": "y/n",
+  "coroutines": "y/n"
+}
