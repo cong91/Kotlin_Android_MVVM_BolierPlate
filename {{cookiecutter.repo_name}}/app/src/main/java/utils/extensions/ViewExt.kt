@@ -14,6 +14,8 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.EditText
+import android.content.ContextWrapper
+import android.support.v7.app.AppCompatActivity
 
 fun ViewGroup.inflate(@LayoutRes resourceId: Int) =
         LayoutInflater.from(context).inflate(
@@ -56,4 +58,14 @@ fun View.hide() {
 
 fun View.show() {
     visibility = VISIBLE
+}
+fun View.getParentActivity(): AppCompatActivity?{
+    var context = this.context
+    while (context is ContextWrapper) {
+        if (context is AppCompatActivity) {
+            return context
+        }
+        context = context.baseContext
+    }
+    return null
 }

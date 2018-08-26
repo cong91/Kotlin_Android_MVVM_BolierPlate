@@ -15,6 +15,8 @@ import com.google.gson.Gson
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 
+import {{ cookiecutter.package_name }}.network.PostApi
+import {{ cookiecutter.package_name }}.BuildConfig
 
 @Module
 class NetModule {
@@ -57,15 +59,11 @@ class NetModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     }
 
-    /**
-     * Example service
-     */
-    /*@Provides
+    @Provides
     @Singleton
-    WordpressService provideService(Retrofit.Builder builder) {
+    fun provideService(builder: Retrofit.Builder): PostApi {
         return builder.baseUrl(BuildConfig.API_URL)
                 .build()
-                .create(WordpressService.class);
+                .create(PostApi::class.java)
     }
-    */
 }

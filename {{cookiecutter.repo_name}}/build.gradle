@@ -38,12 +38,14 @@ ext{
     minSdkVersion = 19
 
     supportLibVersion = '27.1.0'
+    contraintLayoutVersion = '1.1.2'
     rxJavaVersion = '2.1.14'
     rxKotlinVersion = '2.2.0'
     timberVersion = '4.7.0'
     daggerVersion = '2.15'
     retrofitVersion = '2.4.0'
-    okHttpVersion = '3.10.0'
+    okHttpVersion = '3.11.0'
+    retrofitLoggingVersion = "3.11.0"
     picassoVersion = '2.71828'
     crashlyticsVersion = '2.9.4'
     gsonVersion = '2.8.5'
@@ -59,6 +61,7 @@ ext{
     supportLibDesign = "com.android.support:design:$supportLibVersion"
     supportLibRecyclerview = "com.android.support:recyclerview-v7:$supportLibVersion"
     supportLibCardview = "com.android.support:cardview-v7:$supportLibVersion"
+    supportContraintLayout = "com.android.support.constraint:constraint-layout:$contraintLayoutVersion"
 
     //rx
     rxJava = "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -79,6 +82,7 @@ ext{
 
     //net
     retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    retrofitLogging = "com.squareup.okhttp3:logging-interceptor:$retrofitLoggingVersion"
     okHttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
     gson = "com.google.code.gson:gson:$gsonVersion"
     rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
