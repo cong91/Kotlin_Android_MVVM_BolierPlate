@@ -36,7 +36,7 @@ if '{{ cookiecutter.retrofit }}' != 'y':
     os.remove('db/entities/Post.kt')
     os.remove('../res/layout/activity_post_list.xml')
     os.remove('../res/layout/item_post.xml')
-    os.remove('network')
+    shutil.rmtree('network')
     shutil.rmtree('ui/list')
 
 	
