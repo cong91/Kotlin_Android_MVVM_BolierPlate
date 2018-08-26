@@ -6,6 +6,7 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
+import {{ cookiecutter.package_name }}.BR
 
 abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>(private val mViewModelClass: Class<VM>) : AppCompatActivity() {
 
@@ -27,20 +28,10 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding>(private va
     open fun onInject() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        initViewModel(viewModel)
-
+        binding.setVariable(BR.viewModel,viewModel)
         super.onCreate(savedInstanceState)
-
         onInject()
     }
-
-    /**
-     *
-     *  You need override this method.
-     *  And you need to set viewModel to binding: binding.viewModel = viewModel
-     *
-     */
-    abstract fun initViewModel(viewModel: VM)
 }
 
 

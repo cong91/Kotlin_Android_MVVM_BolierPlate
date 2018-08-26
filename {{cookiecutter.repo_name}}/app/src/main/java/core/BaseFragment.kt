@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import {{ cookiecutter.package_name }}.BR
 
 abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private val mViewModelClass: Class<VM>) : Fragment() {
 
@@ -30,12 +31,8 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private va
     open fun onInject() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        initViewModel(viewModel)
-
+        binding.setVariable(BR.viewModel,viewModel)
         super.onCreate(savedInstanceState)
-
         onInject()
     }
-
-    abstract fun initViewModel(viewModel: VM)
 }

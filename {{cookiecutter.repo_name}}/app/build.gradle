@@ -41,9 +41,15 @@ android {
             shrinkResources true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            {% if cookiecutter.retrofit == "y" %}
+            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com/\""
+            {% endif %}
         }
         debug {
             ext.enableCrashlytics = false
+            {% if cookiecutter.retrofit == "y" %}
+            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com/\""
+            {% endif %}
         }
     }
     sourceSets{
@@ -70,6 +76,7 @@ dependencies {
     implementation rootProject.ext.supportLibDesign
     implementation rootProject.ext.supportLibRecyclerview
     implementation rootProject.ext.supportLibCardview
+    implementation rootProject.ext.supportContraintLayout
 
     //timber
     implementation rootProject.ext.timber
@@ -93,6 +100,7 @@ dependencies {
     {% if cookiecutter.retrofit == "y" %}
     //net
     implementation rootProject.ext.retrofit
+    implementation rootProject.ext.retrofitLogging
     implementation rootProject.ext.okHttp
     implementation rootProject.ext.gson
     implementation rootProject.ext.rxJavaAdapter
@@ -120,6 +128,7 @@ dependencies {
     //arch-comp Lifecycles, LiveData, and ViewModel
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     implementation "android.arch.lifecycle:common-java8:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
     //arch-comp Room
     implementation "android.arch.persistence.room:runtime:$room_version"
     kapt "android.arch.persistence.room:compiler:$room_version"

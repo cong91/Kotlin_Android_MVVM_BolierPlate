@@ -32,7 +32,15 @@ if '{{ cookiecutter.splash_screen }}' != 'y':
 if '{{ cookiecutter.retrofit }}' != 'y':
     os.remove('di/module/NetModule.kt')
     os.remove('utils/service/CallbackWrapper.kt')
+    os.remove('db/dao/PostDao.kt')
+    os.remove('db/entities/Post.kt')
+    os.remove('../res/layout/activity_post_list.xml')
+    os.remove('../res/layout/item_post.xml')
+    os.remove('network')
+    shutil.rmtree('ui/list')
 
+	
+	
 base = os.path.join(root_src_dir,"core")
 di = os.path.join(root_src_dir,"di")
 utils = os.path.join(root_src_dir,"utils")
