@@ -45,73 +45,84 @@ cookiecutter https://github.com/cong91/Kotlin_Android_MVVM_BolierPlate.git
 
 ##### Project Tree After Scaffold
 ```bash
-
 ├── app
 │   ├── build.gradle
 │   ├── proguard-rules.pro
 │   └── src
 │       ├── androidTest
 │       │   └── java
-│       │       └── com
-│       │           └── generalmobile
-│       │               └── app
-│       │                   └── kotlinmvvmstarterproject
-│       │                       └── ApplicationTest.java
+│       │       └── ApplicationTest.kt
 │       ├── main
 │       │   ├── AndroidManifest.xml
-│       │   ├── kotlin
-│       │   │   └── com
-│       │   │       └── generalmobile
-│       │   │           └── app
-│       │   │               └── kotlinmvvmstarterproject
-│       │   │                   ├── Application.kt
-│       │   │                   ├── core
-│       │   │                   │   ├── recyclerview
-│       │   │                   │   | 		├── BaseViewAdapter.kt
-│       │   │                   │   | 		├── BindingViewHolder.kt
-│       │   │                   │   | 		├── MultiTypeAdapter.kt
-│       │   │                   │   | 		├── SingleTypeAdapter.kt
-│       │   │                   ├── core
-│       │   │                   │   ├── BaseActivity.kt
-│       │   │                   │   ├── BaseAdapter.kt
-│       │   │                   │   ├── BaseDiffCallback.kt
-│       │   │                   │   ├── BaseEntity.kt
-│       │   │                   │   ├── BaseFragment.kt
-│       │   │                   │   ├── BasePagedListAdapter.kt
-│       │   │                   │   ├── BaseViewHolder.kt
-│       │   │                   │   └── BaseViewModel.kt
-│       │   │                   ├── db
-│       │   │                   │   ├── AppDatabase.kt
-│       │   │                   │   ├── dao
-│       │   │                   │   │   └── ExampleDao.kt
-│       │   │                   │   └── entities
-│       │   │                   │       └── Example.kt
-│       │   │                   ├── di
-│       │   │                   │   ├── component
-│       │   │                   │   │   └── ApplicationComponent.kt
-│       │   │                   │   ├── module
-│       │   │                   │   │   ├── ApplicationModule.kt
-│       │   │                   │   │   ├── DatabaseModule.kt
-│       │   │                   │   │   └── NetModule.kt
-│       │   │                   │   └── scope
-│       │   │                   │       └── ActivityScope.kt
-│       │   │                   ├── ui
-│       │   │                   │   ├── main
-│       │   │                   │   │   ├── MainActivityViewModel.kt
-│       │   │                   │   │   └── MainActivity.kt
-│       │   │                   │   └── splash
-│       │   │                   │       └── SplashActivity.kt
-│       │   │                   └── utils
-│       │   │                       └── service
-│       │   │                           └── CallbackWrapper.kt
-│       │   │                       └── timber
-│       │   │                           └── CrashReportTree.kt
+│       │   ├── java
+│       │   │   ├── App.kt
+│       │   │   ├── core
+│       │   │   │   ├── BaseActivity.kt
+│       │   │   │   ├── BaseAdapter.kt
+│       │   │   │   ├── BaseDiffCallback.kt
+│       │   │   │   ├── BaseEntity.kt
+│       │   │   │   ├── BaseFragment.kt
+│       │   │   │   ├── BasePagedListAdapter.kt
+│       │   │   │   ├── BaseViewHolder.kt
+│       │   │   │   ├── BaseViewModel.kt
+│       │   │   │   ├── Dummy.kt
+│       │   │   │   ├── ViewModelFactory.kt
+│       │   │   │   └── recyclerview
+│       │   │   │       ├── BaseViewAdapter.kt
+│       │   │   │       ├── BindingViewHolder.kt
+│       │   │   │       ├── MultiTypeAdapter.kt
+│       │   │   │       └── SingleTypeAdapter.kt
+│       │   │   ├── db
+│       │   │   │   ├── AppDatabase.kt
+│       │   │   │   ├── dao
+│       │   │   │   │   ├── ExampleDao.kt
+│       │   │   │   │   └── PostDao.kt
+│       │   │   │   └── entities
+│       │   │   │       ├── Example.kt
+│       │   │   │       └── Post.kt
+│       │   │   ├── di
+│       │   │   │   ├── component
+│       │   │   │   │   └── ApplicationComponent.kt
+│       │   │   │   ├── module
+│       │   │   │   │   ├── ApplicationModule.kt
+│       │   │   │   │   ├── DatabaseModule.kt
+│       │   │   │   │   ├── NetModule.kt
+│       │   │   │   │   ├── ViewModelKey.kt
+│       │   │   │   │   └── ViewModelModule.kt
+│       │   │   │   └── scope
+│       │   │   │       └── ActivityScope.kt
+│       │   │   ├── network
+│       │   │   │   └── PostApi.kt
+│       │   │   ├── ui
+│       │   │   │   ├── list
+│       │   │   │   │   ├── PostListActivity.kt
+│       │   │   │   │   └── PostListViewModel.kt
+│       │   │   │   ├── main
+│       │   │   │   │   ├── MainActivity.kt
+│       │   │   │   │   └── MainActivityViewModel.kt
+│       │   │   │   └── splash
+│       │   │   │       └── SplashActivity.kt
+│       │   │   └── utils
+│       │   │       ├── BindingAdapters.kt
+│       │   │       ├── extensions
+│       │   │       │   ├── ActivityExt.kt
+│       │   │       │   ├── AnyExt.kt
+│       │   │       │   ├── ContextExt.kt
+│       │   │       │   ├── FragmentExt.kt
+│       │   │       │   └── ViewExt.kt
+│       │   │       ├── service
+│       │   │       │   └── CallbackWrapper.kt
+│       │   │       └── timber
+│       │   │           └── CrashReportTree.kt
 │       │   └── res
 │       │       ├── drawable
 │       │       │   ├── android_starter.png
 │       │       │   └── splash_logo.xml
 │       │       ├── layout
-│       │       │   └── activity_main.xml
+│       │       │   ├── activity_main.xml
+│       │       │   ├── activity_post_list.xml
+│       │       │   ├── item_post.xml
+│       │       │   └── simple_place_holder.xml
 │       │       ├── mipmap-hdpi
 │       │       │   ├── ic_launcher.png
 │       │       │   └── ic_launcher_round.png
@@ -138,11 +149,7 @@ cookiecutter https://github.com/cong91/Kotlin_Android_MVVM_BolierPlate.git
 │       │           └── dimens.xml
 │       └── test
 │           └── java
-│               └── com
-│                   └── generalmobile
-│                       └── app
-│                           └── kotlinmvvmstarterproject
-│                               └── ExampleUnitTest.java
+│               └── ExampleUnitTest.kt
 ├── build.gradle
 ├── gradle
 │   └── wrapper
@@ -152,6 +159,5 @@ cookiecutter https://github.com/cong91/Kotlin_Android_MVVM_BolierPlate.git
 ├── gradlew
 ├── gradlew.bat
 └── settings.gradle
-
-47 directories, 51 files
+39 directories, 75 files
 
