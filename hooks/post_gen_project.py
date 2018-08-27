@@ -46,6 +46,7 @@ di = os.path.join(root_src_dir,"di")
 utils = os.path.join(root_src_dir,"utils")
 ui = os.path.join(root_src_dir,"ui")
 db = os.path.join(root_src_dir,"db")
+network = os.path.join(root_src_dir,"network")
 
 shutil.move('App.kt',os.path.join(project_dir,"app","src","main","java",package_dir,'App.kt'))
 
@@ -71,3 +72,5 @@ moverecursively(di,root_dst_dir)
 moverecursively(utils,root_dst_dir)
 moverecursively(ui,root_dst_dir)
 moverecursively(db,root_dst_dir)
+moverecursively(network,root_dst_dir)
+
