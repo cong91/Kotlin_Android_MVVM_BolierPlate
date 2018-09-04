@@ -9,6 +9,10 @@ import dagger.multibindings.IntoMap
 {% if cookiecutter.retrofit == "y" %}
 import {{ cookiecutter.package_name }}.ui.list.PostListViewModel
 {% endif %}
+{% if cookiecutter.login == "y" %}
+import {{ cookiecutter.package_name }}.ui.login.LoginViewModel
+import {{ cookiecutter.package_name }}.ui.login.RegisterViewModel
+{% endif %}
 @Module
 abstract class ViewModelModule {
 
@@ -19,6 +23,20 @@ abstract class ViewModelModule {
     // Bind your View Model here
     abstract fun bindPostListViewModel( mainViewModel: PostListViewModel ): ViewModel
     {% endif %}
+    {% if cookiecutter.login == "y" %}
+    @Binds
+    @IntoMap
+    @ViewModelKey( LoginViewModel::class )
+    // Bind your View Model here
+    abstract fun bindLoginActivityViewModel( loginViewModel: LoginViewModel ): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey( RegisterViewModel::class )
+    // Bind your View Model here
+    abstract fun bindRegisterFragmentViewModel( registerFragmentViewModel: RegisterViewModel): ViewModel
+    {% endif %}
+
+
     @Binds
     abstract fun bindViewModelFactory( factory: ViewModelFactory):
             ViewModelProvider.Factory
