@@ -43,6 +43,11 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         {% endif %}
+        {% if cookiecutter.login == "y" %}
+        <activity android:name=".ui.login.RegisterActivity"
+            android:theme="@style/Translucent"></activity>
+        <activity android:name=".ui.login.LoginActivity"></activity>
+        {% endif %}
         <!--TODO:put your fabric api key here-->
         <meta-data
             android:name="io.fabric.ApiKey"

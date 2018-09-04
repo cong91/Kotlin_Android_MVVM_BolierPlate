@@ -39,6 +39,20 @@ if '{{ cookiecutter.retrofit }}' != 'y':
     shutil.rmtree('network')
     shutil.rmtree('ui/list')
 
+if '{{ cookiecutter.login }}' != 'y':
+    os.remove('../res/drawable/bg_input_cursor.xml')
+    os.remove('../res/drawable/bg_input_cursor_2.xml')
+    os.remove('../res/drawable/bt_shape.xml')
+    os.remove('../res/drawable/bt_shape_2.xml')
+    os.remove('../res/drawable/selector_bg_edit.xml')
+    os.remove('../res/drawable/selector_bg_edit_2.xml')
+    os.remove('../res/drawable/state_list_animator_z.xml')
+    os.remove('../res/drawable-xxxhdpi/plus.png')
+    os.remove('../res/drawable-xxxhdpi/plus_x.png')
+    os.remove('../res/layout/activity_login.xml')
+    os.remove('../res/layout/activity_register.xml')
+    shutil.rmtree('ui/login')
+
 	
 	
 base = os.path.join(root_src_dir,"core")

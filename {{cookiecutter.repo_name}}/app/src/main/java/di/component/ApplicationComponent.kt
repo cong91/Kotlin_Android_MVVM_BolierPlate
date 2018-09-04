@@ -12,6 +12,11 @@ import {{ cookiecutter.package_name }}.di.module.NetModule
 import {{ cookiecutter.package_name }}.ui.list.PostListViewModel
 {% endif %}
 
+{% if cookiecutter.login == "y" %}
+import {{ cookiecutter.package_name }}.ui.login.LoginViewModel
+import {{ cookiecutter.package_name }}.ui.login.RegisterViewModel
+{% endif %}
+
 import dagger.Component
 import javax.inject.Singleton
 
@@ -25,14 +30,14 @@ import javax.inject.Singleton
 {% endif %}
 interface ApplicationComponent {
     fun app(): App
-
-
     fun context(): Context
-
     fun preferences(): SharedPreferences
-
     fun inject(mainActivityViewModel: MainActivityViewModel)
 	{% if cookiecutter.retrofit == "y" %}
 	fun inject(postListActivityViewModel: PostListViewModel)
+    {% endif %}
+    {% if cookiecutter.login == "y" %}
+	fun inject(loginActivityViewModel: LoginViewModel)
+    fun inject(registerViewModel: RegisterViewModel)    
     {% endif %}
 }

@@ -17,7 +17,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private va
     abstract fun getLayoutRes(): Int
 
     val binding by lazy {
-        DataBindingUtil.setContentView(activity!!, getLayoutRes()) as DB
+        DataBindingUtil.inflate(layoutInflater!!,getLayoutRes(),null,false) as DB
     }
 
     val viewModel by lazy {
@@ -31,8 +31,11 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding>(private va
     open fun onInject() {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding.setVariable(BR.viewModel,viewModel)
         super.onCreate(savedInstanceState)
-        onInject()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding.setVariable(BR.viewModel,viewModel)
+        return binding.root
     }
 }
