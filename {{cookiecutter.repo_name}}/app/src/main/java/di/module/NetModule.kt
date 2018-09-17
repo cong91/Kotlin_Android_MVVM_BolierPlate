@@ -17,6 +17,8 @@ import com.google.gson.GsonBuilder
 
 import {{ cookiecutter.package_name }}.network.PostApi
 import {{ cookiecutter.package_name }}.BuildConfig
+import {{ cookiecutter.package_name }}.core.api.LiveDataCallAdapterFactory
+
 
 @Module
 class NetModule {
@@ -56,7 +58,7 @@ class NetModule {
         return Retrofit.Builder()
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
     }
 
     @Provides

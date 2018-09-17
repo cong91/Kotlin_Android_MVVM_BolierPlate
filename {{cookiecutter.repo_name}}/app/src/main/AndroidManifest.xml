@@ -12,8 +12,7 @@
  	{% if cookiecutter.splash_screen == "y" %}
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
         </activity>
         <activity android:name=".ui.splash.SplashActivity"
             android:theme="@style/Splash">
@@ -27,8 +26,7 @@
         {% if cookiecutter.splash_screen == "n" %}
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,8 +37,7 @@
         {% if cookiecutter.retrofit == "y" %}
         <activity
             android:name=".ui.list.PostListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name"        >
         </activity>
         {% endif %}
         {% if cookiecutter.login == "y" %}

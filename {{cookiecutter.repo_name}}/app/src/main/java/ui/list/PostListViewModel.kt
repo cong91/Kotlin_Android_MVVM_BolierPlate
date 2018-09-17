@@ -1,7 +1,9 @@
 package {{ cookiecutter.package_name }}.ui.list
 
 import android.app.Application
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.view.View
 import {{ cookiecutter.package_name }}.App
 import {{ cookiecutter.package_name }}.R
@@ -14,58 +16,37 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import {{ cookiecutter.package_name }}.core.api.Resource
+import {{ cookiecutter.package_name }}.core.api.Status
+import {{ cookiecutter.package_name }}.network.PostRepository
 import javax.inject.Inject
 
 class PostListViewModel  @Inject constructor(app: Application) : BaseViewModel(app){
-
-    @Inject
-    lateinit var db: AppDatabase
-    @Inject
-    lateinit var postApi: PostApi
-    init {
-        (app as? App)?.component?.inject(this)
-    }
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
     val errorClickListener = View.OnClickListener { loadPosts() }
     var posts: MutableLiveData<List<Post>> = MutableLiveData()
-    private lateinit var subscription: Disposable
+    @Inject
+    lateinit var postRepository: PostRepository
+    init {
+        (app as? App)?.component?.inject(this)
+    }
+
 
     override fun onCleared() {
         super.onCleared()
-        subscription.dispose()
     }
 
-    fun loadPosts(){
-        subscription = Observable.fromCallable { db.postDao().all }
-                .concatMap {
-                    dbPostList ->
-                        if(dbPostList.isEmpty())
-                            postApi.getPosts().concatMap {
-                                            apiPostList -> db.postDao().insertAll(*apiPostList.toTypedArray())
-                                 Observable.just(apiPostList)
-                                       }
-                        else
-                            Observable.just(dbPostList)
-                }
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { onRetrievePostListStart() }
-                .doOnTerminate { onRetrievePostListFinish() }
-                .subscribe(
-                        { result ->
-                            posts.value = result
-                        },
-                        { error -> onRetrievePostListError(error) }
-                )
+    fun loadPosts() : LiveData<Resource<List<Post>>> {
+        return postRepository.fetchPost()
     }
 
-    private fun onRetrievePostListStart(){
+    fun onRetrievePostListStart(){
         loadingVisibility.value = View.VISIBLE
         errorMessage.value = null
     }
 
-    private fun onRetrievePostListFinish(){
+    fun onRetrievePostListFinish(){
         loadingVisibility.value = View.GONE
     }
 

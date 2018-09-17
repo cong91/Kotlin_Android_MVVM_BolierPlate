@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import {{ cookiecutter.package_name }}.R
 import {{ cookiecutter.package_name }}.core.BaseActivity
+import {{ cookiecutter.package_name }}.core.api.Resource
+import {{ cookiecutter.package_name }}.core.api.Status
 import {{ cookiecutter.package_name }}.core.recyclerview.SingleTypeAdapter
 import {{ cookiecutter.package_name }}.databinding.ActivityPostListBinding
 import {{ cookiecutter.package_name }}.db.entities.Post
@@ -19,10 +21,9 @@ class PostListActivity : BaseActivity<PostListViewModel, ActivityPostListBinding
     override fun getLayoutRes(): Int {
         return R.layout.activity_post_list
     }
-
+    private lateinit var observerPost: Observer<Resource<List<Post>>>
     private var errorSnackbar: Snackbar? = null
     private var postsAdapter: SingleTypeAdapter<Post>? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.errorMessage.observe(this, Observer { errorMessage ->
@@ -32,10 +33,20 @@ class PostListActivity : BaseActivity<PostListViewModel, ActivityPostListBinding
         postsAdapter = SingleTypeAdapter(applicationContext, R.layout.item_post)
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.postList.adapter = postsAdapter
-        viewModel.posts.observe(this, Observer { posts ->
-            if (posts != null) postsAdapter!!.addAll(posts)
-        })
-        viewModel.loadPosts()
+
+        observerPost = Observer { postsResource ->
+            when(postsResource!!.status){
+                Status.LOADING -> viewModel.onRetrievePostListStart()
+                Status.ERROR -> {
+                    viewModel.onRetrievePostListFinish()
+                }
+                Status.SUCCESS -> {
+                    viewModel.onRetrievePostListFinish()
+                    if (postsResource.data != null) postsAdapter!!.addAll(postsResource.data)
+                }
+            }
+        }
+        viewModel.loadPosts().observe(this,observerPost)
     }
 
     private fun showError(@StringRes errorMessage: Int) {
