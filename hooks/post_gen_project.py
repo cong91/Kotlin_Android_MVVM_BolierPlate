@@ -34,11 +34,12 @@ if '{{ cookiecutter.retrofit }}' != 'y':
     os.remove('utils/service/CallbackWrapper.kt')
     os.remove('db/dao/PostDao.kt')
     os.remove('db/entities/Post.kt')
+    os.remove('network/PostApi.kt')
+    os.remove('network/PostRepository.kt')
     os.remove('../res/layout/activity_post_list.xml')
     os.remove('../res/layout/item_post.xml')
     shutil.rmtree('ui/list')
     shutil.rmtree('core/api')
-    shutil.rmtree('/network')
 
 if '{{ cookiecutter.login }}' != 'y':
     os.remove('../res/drawable/bg_input_cursor.xml')
