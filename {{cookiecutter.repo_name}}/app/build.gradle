@@ -42,13 +42,13 @@ android {
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             {% if cookiecutter.retrofit == "y" %}
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com/\""
+            buildConfigField "String", "API_URL", "\"https://api.myjson.com/\""
             {% endif %}
         }
         debug {
             ext.enableCrashlytics = false
             {% if cookiecutter.retrofit == "y" %}
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com/\""
+            buildConfigField "String", "API_URL", "\"https://api.myjson.com/\""
             {% endif %}
         }
     }
