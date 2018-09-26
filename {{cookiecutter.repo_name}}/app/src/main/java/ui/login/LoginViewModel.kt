@@ -4,7 +4,9 @@ import android.app.Application
 import {{ cookiecutter.package_name }}.App
 import {{ cookiecutter.package_name }}.core.BaseViewModel
 import {{ cookiecutter.package_name }}.db.AppDatabase
+{% if cookiecutter.retrofit == "y" %}
 import {{ cookiecutter.package_name }}.network.PostApi
+{% endif %}
 import javax.inject.Inject
 
 class LoginViewModel  @Inject constructor(app: Application) : BaseViewModel(app) {
