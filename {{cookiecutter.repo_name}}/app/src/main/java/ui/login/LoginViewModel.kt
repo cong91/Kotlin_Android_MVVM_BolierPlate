@@ -10,8 +10,10 @@ import javax.inject.Inject
 class LoginViewModel  @Inject constructor(app: Application) : BaseViewModel(app) {
     @Inject
     lateinit var db: AppDatabase
+    {% if cookiecutter.retrofit == "y" %}
     @Inject
     lateinit var postApi: PostApi
+    {% endif %}
     init {
         (app as? App)?.component?.inject(this)
     }
